@@ -14,7 +14,7 @@ This implementation aims to become one of the ESGP reference implementations. Th
 
 ### Related Work
 
-- Some (internal?) document of the https://nationale-leitstelle.de
+- Some (internal?) YAML document of the [Nationale Leitstelle](https://nationale-leitstelle.de): [OBELISdeutschlandnetz_0.9-1.yaml](Leitstelle/OBELISdeutschlandnetz_0.9-1.yaml)
 - https://driveelectric.gov/resources/#ev-chart
 - https://driveelectric.gov/files/ev-chart-data-guidance.pdf
 - Electric Vehicle Charging Data Performance & Reporting (SAE report, 2023)
