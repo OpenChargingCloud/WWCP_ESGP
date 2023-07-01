@@ -1,4 +1,4 @@
-﻿namespace WWCP_OSGP
+﻿namespace WWCP_NCP
 {
     public class Class1
     {
