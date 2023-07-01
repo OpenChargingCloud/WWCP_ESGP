@@ -1,15 +1,15 @@
-# WWCP_OSGP
+# WWCP_ESGP
 
 
 This software will allow the communication between World Wide Charging Protocol
-(WWCP) entities and entities implementing the *Omnipresent Statistics Gathering Protocol (OSGP)*.
+(WWCP) entities and entities implementing the *E-Mobility Statistics Gathering Protocol (ESGP)*.
 The focus of this protocol are the communication aspects between charge point operators (CPOs)
 and national contact points (NCPs) in e-mobility.
 
 
 ### Scope
 
-This implementation aims to become one of the OSGP reference implementations. Therefore you will find a lot of inline documentation, many test cases and mockups.
+This implementation aims to become one of the ESGP reference implementations. Therefore you will find a lot of inline documentation, many test cases and mockups.
 
 
 ### Related Work
