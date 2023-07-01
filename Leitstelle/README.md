@@ -79,6 +79,8 @@ A boolean that describes if there are any negligible damages at the location.
 
 ## Charging Sessions
 
+The charging sessions seem to include the signed meter values of the German Calibration Law. As this data includes personal data and the Leitstelle does not have any legal authority to demand personal data, this seems to be a direct violation of the European General Data Protection Regulation (GDPR)!
+
 ### /locations/{locationId}/evses/{evseId}/charging-sessions/{chargingSessionId}
 
 
