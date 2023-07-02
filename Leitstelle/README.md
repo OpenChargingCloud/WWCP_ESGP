@@ -1,6 +1,13 @@
 # Leitstelle
 
-The YAML defines the OCPI Hub routing HTTP header information, but as the Leitstelle is not an OCPI hub and we can take the 'from* information from the credentials those information seems to be redundant.
+The following discusses the OpenAPI specification from the Nationale Leitstelle called: *OBELISdeutschlandnetz v0.9*.
+
+Whether this specification is internal, because it was attached to a limited tender or really "free" and "open" is still unclear.
+
+
+## OCPI Routing Headers
+
+The specification seems to be based on OCPI v2.2 and uses the OCPI Hub routing HTTP header information, but as the Leitstelle is not an OCPI hub and we can take the 'from* information from the HTTP connection credentials. Therefore this information seems to be redundant.
 
 ```
 OCPI-from-party-id      OPCI Party-ID of BoB
