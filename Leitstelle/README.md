@@ -22,7 +22,62 @@ OCPI-to-country-code    OPCI country code of sender
 
 ## Locations
 
-### /locations/{locationId}
+### POST /locations and PUT|PAT|DELETE /locations/{locationId}
+
+```
+{
+  "name": "Aldi-Süd Parkplatz",
+  "address": "Am Stellwerk 1",
+  "postalCode": "70197",
+  "city": "Stuttgart",
+  "state": "BW",
+  "coordinates": {
+    "latitude": 27.4,
+    "longitude": 123.6
+  },
+  "evses": [
+    {
+      "id": "5459fd2c-b75e-4a93-8fcb-2dde5d2fc611",
+      "evseId": "DE*ABC*E45B*78C",
+      "status": "CHARGING",
+      "statusSchedule": [
+        {
+          "periodBegin": "2023-07-02T18:13:11.067Z",
+          "periodEnd": "2023-07-02T18:13:11.067Z",
+          "status": "RESERVED"
+        }
+      ],
+      "capabilities": [
+        "CREDIT_CARD_PAYABLE",
+        "PED_TERMINAL"
+      ],
+      "connectors": [
+        {
+          "id": "5459fd2c-b75e-4a93-8fcb-2dde5d2fc611",
+          "standard": "CHADEMO",
+          "powerType": "AC_1_PHASE",
+          "format": "SOCKET",
+          "voltage": 23,
+          "amperage": 16,
+          "maxPower": 23000
+        }
+      ],
+      "manufacturer": "ChargeX",
+      "model": "Aqueduct + Pro",
+      "negligibleDefects": false,
+      "predecessor": "5459fd2c-b75e-4a93-8fcb-2dde5d2fc611"
+    }
+  ],
+  "operator": "InCharge AB",
+  "owner": "Aldi-Süd",
+  "auxiliaryFacilities": [
+    "FOOD_SERVICE",
+    "GREEN_ROOF"
+  ],
+  "negligibleDamages": false,
+  "lastUpdated": "2023-07-02T18:13:11.067Z"
+}
+```
 
 #### State
 
@@ -57,14 +112,51 @@ An enum of type string that represents a auxiliary facility that is available at
 
 #### Negligible Damages
 
-A boolean that describes if there are any negligible damages at the location.
+A boolean that describes if there are any negligible damages at the location or EVSE.
 
 ```
   "negligibleDamages": false
 ```
 
-### /locations/{locationId}/ratings/{month}
+### POST /locations/{locationId}/renewal
 
+Report renewal of multiple EVSEs at a certain location.
+
+Not using the official EVSE Ids, but the CPO internal identifications is a very bad API design.
+
+Having this at the EVSE level does not make much sense. It should be at the charging station level, as the charging station is the physical device. EVSEs are just logical devices.
+
+What is the definition of a `SOFTWARE_FAULT` leading to ab renewal of a charging station?
+
+For this endpoint only POST seems to be defined. But the definition of the endtime seems to indicate, that there might be at least a 1st error report and a final repair report. How do I know, that both belong together and are not two independent errors? When a repair is rescheduled multiple times, as a replacement part was not delivered in time how do we know, that all those reports belong to the same initial report? Currently we could only reason about the EVSE Ids and the starting time. But as soon as multiple different reports overlap, we end up in total chaos.
+
+```
+{
+  "evseIds": [                                  // Set of unique EVSE IDs that belong to EVSEs that were renewed. Omitting this set indicates that all EVSEs were renewed.
+    "5459fd2c-b75e-4a93-8fcb-2dde5d2fc611",
+    "5459fd2c-b75e-4a93-8fcb-2dde5d2fc612"
+  ],
+  "renewedComponents": [                        // Set of renewed EVSE components. At least one element must be provided.
+    {
+      "chargePointComponent":  "DISPLAY",       // CABLE_COOLING_UNIT|NETWORKING_ELECTRONICS|POWER_MODULE|PAYMENT_DEVICE|VEHICLE_COMMUNICATION_UNIT|BACKEND_COMMUNICATION_UNIT|DISPLAY|DC_METER|AIR_FILTER|OTHERS
+      "reason":                "DAMAGE"         // DAMAGE|HARDWARE_FAULT|SOFTWARE_FAULT|RETROFITTING|OTHERS
+    }
+  ],
+  "start":  "2023-07-02T18:20:22.986Z",        // UTC datetime for when the renewal work has started/will start.
+  "end":    "2023-07-02T18:20:22.986Z"         // UTC datetime for when the renewal work was finished/is scheduled to finish.
+}
+```
+
+
+
+### POST /locations/{locationId}/ratings and PUT|PATCH /locations/{locationId}/ratings/{month}
+
+```
+{
+  "month": "09-2022",     // MM-yyyy or (0[1-9]|1[0-2])-[0-9]{4}. Only within POST requests!
+  "rating": 2             // Average customer location rating in german school grades (1 = best, 6 = worst)
+}
+```
 
 
 ### /locations/{locationId}/ad-hoc-tariff/{month}
