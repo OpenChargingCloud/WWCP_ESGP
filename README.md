@@ -14,9 +14,9 @@ This implementation aims to become one of the ESGP reference implementations. Th
 
 ### Specification
 
-An internal(?) or at least they claim, that this would be "open" [OpenAPI specification](https://www.openapis.org) from the [Nationale Leitstelle](https://nationale-leitstelle.de): [OBELISdeutschlandnetz v0.9](Leitstelle/OBELISdeutschlandnetz_0.9-1.yaml).
+The internal (or at least they claim, that this would be "free" and "open") [OpenAPI specification](https://www.openapis.org) from the [Nationale Leitstelle](https://nationale-leitstelle.de): [OBELISdeutschlandnetz v0.9](Leitstelle/OBELISdeutschlandnetz_0.9-1.yaml).
 
-Be aware, that this "OCPI specification" seems to be a quite strange specification. More details why this is not really OCPI can be found [here](Leitstelle/README.md).
+Be aware, that this "OCPI specification" seems to be a quite strange specification. More details on design flaws and why this is not really OCPI can be found [here](Leitstelle/README.md).
 
 
 ### Related Work
