@@ -105,7 +105,43 @@ Having a start and end date within the ad hoc tariff data structure and addition
 
 ## Charging Sessions
 
-The charging sessions seem to include the signed meter values of the German Calibration Law. As this data includes personal data and the Leitstelle does not have any legal authority to demand personal data, this seems to be a direct violation of the European General Data Protection Regulation (GDPR)!
+The charging sessions are not anonymized. What kind of "hash" is ment with `"DE-ABC-hashedPart"`? Even cryptographical secure hashes on short strings like eMAIds or RFID UIDs do not provide any security as we can use rainbow tables against them, or even just calculate all possibilites. Also hashed user identifications still have the same privacy risk as clear text user identifications, as they stil allow to track user movements.
+
+The charging sessions include the signed meter values of the *German Calibration Law*. As this data includes unhashed personal data and the Leitstelle does not have any legal authority to demand personal data, this seems to be a direct violation of the European General Data Protection Regulation (GDPR)!
+
+```
+{
+  "start": "2023-07-02T11:00:04.402Z",
+  "end": "2023-07-02T11:00:04.402Z",
+  "emaId": "DE-ABC-hashedPart",
+  "tariffType": "PROFILE_GREEN",
+  "chargingPeriods": [
+    {
+      "start": "2023-07-02T11:00:04.402Z",
+      "dimensions": [
+        {
+          "type": "ENERGY",
+          "value": 12.5
+        }
+      ],
+      "encodingMethod": "MyEncodingMethod",
+      "publicKey": "MyPublicKey",
+      "signedValues": [
+        {
+          "nature": "CHARGING_SESSION_START",
+          "plainData": "12000",
+          "signedData": "SignedDataString"
+        }
+      ]
+    }
+  ],
+  "totalCost": 34.5,
+  "totalEnergy": 25000,
+  "totalTime": 3600,
+  "totalParkingTime": 600,
+  "reason": "POWERLOSS"
+}
+```
 
 ### /locations/{locationId}/evses/{evseId}/charging-sessions/{chargingSessionId}
 
