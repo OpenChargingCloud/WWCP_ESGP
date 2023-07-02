@@ -4,6 +4,9 @@ The following discusses the OpenAPI specification from the Nationale Leitstelle 
 
 Whether this specification is internal, because it was attached to a limited tender or really "free" and "open" is still unclear.
 
+## OCPI Credentials Module
+
+How to authenticate and authorize your communication with the Leitstelle is not defined. Therefore it is likely, that the normal OCPI credentials module should be used. But this is well-known totally broken as it trusts the client to send correct country codes and party identifications... which is *bullshit* security.
 
 ## OCPI Routing Headers
 
