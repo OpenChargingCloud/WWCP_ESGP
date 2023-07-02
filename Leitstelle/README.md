@@ -66,6 +66,25 @@ A boolean that describes if there are any negligible damages at the location.
 
 ### /locations/{locationId}/ad-hoc-tariff/{month}
 
+OCPI has a [tariffs module](https://github.com/ocpi/ocpi/blob/release-2.2.1-bugfixes/mod_tariffs.asciidoc). It is unclear why it was reinvented for the special case of "ad hoc"-tariffs.
+
+Having a start and end date within the ad hoc tariff data structure and additionally a `{month}` parameter in the URL seems to be a design flaw.
+
+```
+{
+  "cost": 12,
+  "additionalCosts": [
+    {
+      "description": "Parking fee in ct per hour [h].",
+      "cost": 12
+    }
+  ],
+  "validFrom": "2023-07-02T10:53:36.982Z",
+  "validTo": "2023-07-02T10:53:36.982Z"
+}
+```
+
+
 
 ### /locations/{locationId}/facility-damages/{facilityDamageId}
 
