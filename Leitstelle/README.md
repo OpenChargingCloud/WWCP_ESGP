@@ -186,29 +186,37 @@ Also we now have to update multiple reports when there is a problem at the missi
 ```
 
 
-### /locations/{locationId}/ad-hoc-tariff/{month}
+### POST /locations/{locationId}/ad-hoc-tariff and PUT|PATCH /locations/{locationId}/ad-hoc-tariff/{month}
 
 OCPI has a [tariffs module](https://github.com/ocpi/ocpi/blob/release-2.2.1-bugfixes/mod_tariffs.asciidoc). It is unclear why it was reinvented for the special case of "ad hoc"-tariffs.
 
 Having a start and end date within the ad hoc tariff data structure and additionally a `{month}` parameter in the URL seems to be a design flaw.
 
+The unit of the additional costs is not machine readable!
+
+How do we invalidate an ad hoc tariff without a DELETE method?
+
 ```
 {
-  "cost":        12,
+  "month":      "09-2022",                                     // MM-yyyy or (0[1-9]|1[0-2])-[0-9]{4}. Only within POST requests!
+  "cost":        12,                                           // Fee/Cost in cents [ct] per kilowatt hour [kWh].
   "additionalCosts": [
     {
-      "description":  "Parking fee in ct per hour [h].",
-      "cost":          12
+      "description":  "Parking fee in ct per hour [h].",       // Description for the additional fee/cost.
+      "cost":          12                                      // Additional fee/cost value in described unit.
     }
   ],
-  "validFrom":  "2023-07-02T10:53:36.982Z",
-  "validTo":    "2023-07-02T10:53:36.982Z"
+  "validFrom":  "2023-07-02T10:53:36.982Z",                    // UTC datetime for when the charge access started being valid.
+  "validTo":    "2023-07-02T10:53:36.982Z"                     // UTC datetime for when the charge access expired.
 }
 ```
 
 
 
 ### /locations/{locationId}/facility-damages/{facilityDamageId}
+
+Report a new facility damage that occurred at a specific location.
+
 
 
 
