@@ -17,7 +17,7 @@ Main problems of this protocol specification are:
 - A bit based on the bad parts of OCPI v2.2, e.g. missing charging station concept, broken authentication/authorization.
 - Most unique data identificators are generated on the receiver side, this makes the process of submitting and later updating data, e.g. a repair process, complicated for no good reason.
 - Predefined strings for `EMP Ids`, `Charging Station Manufacturers` and `Charging Station Models` will lead to unneccessary protocol versioning issues. *"Closed world"* protocol designs do not work in e-mobility!
-- General very bad API design, e.g. GET methods for validating data already send are missing completely.
+- General very bad API design, e.g. GET methods for validating data already send are missing completely. This ptotocol is more a postcard service.
 
 Currently it does not make much sense to implement this protocol!
 
