@@ -92,6 +92,9 @@ Having a start and end date within the ad hoc tariff data structure and addition
 ### /locations/{locationId}/facility-damages/{facilityDamageId}
 
 
+## Charging Stations
+
+In OCPI the charging station level is traditionally missing, and everybody hates it. For the use case of the Leitstelle this is even more disturbing, as many problems and damages relate not to locations or EVSEs (electrical circuits with one or more charging connectors), but to charging stations. Therefore it is unclear how to report e.g. a a broken display: Should it be reported at the location level once, or multiple times at the EVSE level of a charging station having 4 or 6 EVSEs?
 
 
 ## EVSEs
