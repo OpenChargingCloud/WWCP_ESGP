@@ -156,11 +156,55 @@ According to verbal explanations of the Leitstelle (29. June 2023) those chargin
 
 ## Hotline
 
-### /hotline-ratings/{month}
+### POST /hotline-ratings and PUT|PATCH /hotline-ratings/{month}
 
+In which way this hotline rating data can be assumed to be correct? A CPO had no incentive to report correct data and the Leitstelle will not be able to verify it.
+
+The API design is a bit strange:
+ - There is not GET method to verify the uploaded data.
+ - The JSON property "month" is not a month, but complex data. Having just a "year" and a "month" property would have been easier.
+
+```
+{
+  "month":        "09-2022",     // MM-yyyy or (0[1-9]|1[0-2])-[0-9]{4}. Only within POST requests!
+  "hotlineCalls":  1570,         // Amount of hotline calls (int32, so -23 is ok ;) )
+  "fcrRate":       0.67,         // First call resolution rate [0..1]
+  "asa":           64.7,         // Average speed of answer in seconds.
+  "rating":        2             // Average customer hotline rating in german school grades (1 = best, 6 = worst)
+}
+```
 
 
 ## Nondiscriminatory-Access
 
-### /nondiscriminatory-access/{providerGroup}/{month}
+### POST /nondiscriminatory-access and PUT|PATCH /nondiscriminatory-access/{providerGroup}/{month}
+
+In which way this hotline rating data can be assumed to be correct? A CPO had no incentive to report correct data and the Leitstelle will not be able to verify it.
+
+Using an array of "well-known" EMP Ids is surely NOT a proper way to validate EMP Ids.
+
+The API design is a bit strange:
+ - There is not GET method to verify the uploaded data.
+ - The JSON property "month" is not a month, but complex data. Having just a "year" and a "month" property would have been easier.
+ - When this "contract" has a start- and enddate in which way is the "month" still relevant? Why reporting this contract every month, when it does not change during that time?
+
+```
+{
+  "month":                    "09-2022",                         // MM-yyyy or (0[1-9]|1[0-2])-[0-9]{4}. Only within POST requests!
+  "providerGroup":            "DEVFL",                           // Unique BDEW code of the provider group in question, defined by an array of 1070 EMP Ids. Only within POST requests!
+  "cost":                      12,                               // Fee/Cost [int32] in cents [ct] per kilowatt hour [kWh].
+  "additionalCosts": [
+    {
+      "description":   "Parking fee in ct per hour [h].",        // Description for the additional fee/cost.
+      "cost":           12                                       // Additional fee/cost [int32] value in _verbaly_ described unit.
+    }
+  ],
+  "validFrom":                "2023-07-02T17:29:34.922Z",
+  "validTo":                  "2023-07-02T17:29:34.922Z",
+  "contractualBasis":         "ROAMING_CONTRACT",                // Enum that represents the contractual basis for charge access at a location: ROAMING_CONTRACT|BILATERAL_CONTRACT
+  "reasoningDifferentCosts":  "Some reason."                     // Reason why the provider group has a different fee than all others.
+}
+```
+
+
 
