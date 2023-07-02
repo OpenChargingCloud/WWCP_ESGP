@@ -18,6 +18,12 @@ The internal (or at least they claim, that this would be "free" and "open") [Ope
 
 Be aware, that this "OCPI specification" seems to be a quite strange specification. More details on design flaws and why this is not really OCPI can be found [here](Leitstelle/README.md).
 
+Main problems of this protocol specification are:
+- A bit based on the bad parts of OCPI v2.2, e.g. missing charging station concept, broken authentication/authorization.
+- Most unique data identificators are generated on the receiver side, this makes the process of submitting data complicated for no good reason.
+- Predefined strings for `EMP Ids`, `Charging Station Manufacturers` and `Charging Station Models` will lead to unneccessary protocol versioning issues. *Closed world* protocol designs do not work in e-mobility!
+- General very bad API design, e.g. GET methods for validating data already send are missing completely.
+
 
 ### Related Work
 
