@@ -194,15 +194,15 @@ Having a start and end date within the ad hoc tariff data structure and addition
 
 ```
 {
-  "cost": 12,
+  "cost":        12,
   "additionalCosts": [
     {
-      "description": "Parking fee in ct per hour [h].",
-      "cost": 12
+      "description":  "Parking fee in ct per hour [h].",
+      "cost":          12
     }
   ],
-  "validFrom": "2023-07-02T10:53:36.982Z",
-  "validTo": "2023-07-02T10:53:36.982Z"
+  "validFrom":  "2023-07-02T10:53:36.982Z",
+  "validTo":    "2023-07-02T10:53:36.982Z"
 }
 ```
 
@@ -211,12 +211,26 @@ Having a start and end date within the ad hoc tariff data structure and addition
 ### /locations/{locationId}/facility-damages/{facilityDamageId}
 
 
-## Charging Stations
+
+
+
+## (Missing) Charging Stations
 
 In OCPI the charging station level is traditionally missing, and everybody hates it. For the use case of the Leitstelle this is even more disturbing, as many problems and damages relate not to locations or EVSEs (electrical circuits with one or more charging connectors), but to charging stations. Therefore it is unclear how to report e.g. a a broken display: Should it be reported at the location level once, or multiple times at the EVSE level of a charging station having 4 or 6 EVSEs?
 
 
 ## EVSEs
+
+### POST /locations/{locationId}/evses and PUT|PATCH|DELETE /locations/{locationId}/evses/{evseId}
+
+When updating an EVSE there is an optional JSON property called `predecessor`, how this should be used is not described. Changing EVSEs is a highly problematic process, as we are within a distributed system an can not make sure, that at every moment in time everyone has the same information about an EVSE. What the concept of `EVSE Id` really means is no where defined correctly. It could be the unique identification of an EVSE hardware (but this is part of a charging station), the unique identification of a logical EVSE at a CPO or the unique identification of a charging possibility on a digital map. All mean the same as long as nothing changes, but during change processes those unique identifications mean something completely different.
+
+```
+"predecessor": "5459fd2c-b75e-4a93-8fcb-2dde5d2fc611"
+```
+
+
+
 
 ### POST /locations/{locationId}/evses/{evseId}/renewal and PUT|PATCH /locations/{locationId}/evses/{evseId}/renewal/{renewalId}
 
@@ -225,7 +239,8 @@ Report the renewal of a specific EVSE.
 These requests have the same problems like the renewal reports at the location level.
 
 
-### /locations/{locationId}/evses/{evseId}/ratings/{month}
+
+### POST /locations/{locationId}/evses/{evseId}/ratings and PUT|PATCH /locations/{locationId}/evses/{evseId}/ratings/{month}
 
 Monthly reports for charging session ratings of a specific EVSE.
 
@@ -233,14 +248,14 @@ These reports have the same problems like the rating reports at the location lev
 
 ```
 {
-  "month":            "09-2022",
+  "month":            "09-2022",     // MM-yyyy or (0[1-9]|1[0-2])-[0-9]{4}. Only within POST requests!
   "rating":            2,            // Average customer rating for charging sessions at the EVSE for the current month in german school grades (1 = best, 6 = worst).
   "totalComplaints":   8             // The amount of the received complaints for charging sessions at the EVSE in question.
 }
 ```
 
 
-### /locations/{locationId}/evses/{evseId}/defects/{defectId}
+### POST /locations/{locationId}/evses/{evseId}/defects and PUT|PATCH /locations/{locationId}/evses/{evseId}/defects/{defectId}
 
 ```
 {
