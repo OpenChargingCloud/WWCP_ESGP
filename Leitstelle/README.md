@@ -229,6 +229,8 @@ When updating an EVSE there is an optional JSON property called `predecessor`, h
 "predecessor": "5459fd2c-b75e-4a93-8fcb-2dde5d2fc611"
 ```
 
+The JSON properties `manufacturer` and `model` are again arrays of defined values. This is very bad API design as it leads to a protocol and API versioning hell.
+
 
 
 
@@ -364,7 +366,7 @@ The API design is a bit strange:
 
 In which way this hotline rating data can be assumed to be correct? A CPO had no incentive to report correct data and the Leitstelle will not be able to verify it.
 
-Using an array of "well-known" EMP Ids is surely NOT a proper way to validate EMP Ids.
+Using an array of "well-known" EMP Ids is surely NOT a proper way to validate EMP Ids. This is very bad API design as it leads to a protocol and API versioning hell.
 
 The API design is a bit strange:
  - There is not GET method to verify the uploaded data.
