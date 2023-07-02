@@ -333,7 +333,7 @@ The charging sessions are not anonymized. What kind of "hash" is ment with `"DE-
 
 The charging sessions include the signed meter values of the *German Calibration Law*. As this data includes unhashed personal data and the Leitstelle does not have any legal authority to demand personal data, this seems to be a direct violation of the European General Data Protection Regulation (GDPR)!
 
-According to verbal explanations of the Leitstelle (29. June 2023) those charging sessions should not be send in real time (so no load management use case), but within 24 hours after the charging session. Therefore the use case of this data is unclear. When the Leitstelle really just wants to "understand" charging sessions, we could remove all privacy sensitive parts and only send a minor probe (~2%) of all charging sessions, or just "interesting/unusual ones". But when they do not want real time data, why is the `PATCH`method defined?
+According to verbal explanations of the Leitstelle (29. June 2023) those charging sessions should be send with a granularity of 1 minute, but should not be send in real time (so no load management use case), but within 24 hours after the charging session. Therefore the use case of this data is unclear. When the Leitstelle really just wants to "understand" charging sessions, we could remove all privacy sensitive parts and only send a minor probe (~2%) of all charging sessions, or just "interesting/unusual ones". But when they do not want real time data, why is the `PATCH`method defined?
 
 ```
 {
