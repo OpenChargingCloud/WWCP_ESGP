@@ -105,6 +105,8 @@ Having a start and end date within the ad hoc tariff data structure and addition
 
 ## Charging Sessions
 
+### /locations/{locationId}/evses/{evseId}/charging-sessions/{chargingSessionId}
+
 The charging sessions are not anonymized. What kind of "hash" is ment with `"DE-ABC-hashedPart"`? Even cryptographical secure hashes on short strings like eMAIds or RFID UIDs do not provide any security as we can use rainbow tables against them, or even just calculate all possibilites. Also hashed user identifications still have the same privacy risk as clear text user identifications, as they stil allow to track user movements.
 
 The charging sessions include the signed meter values of the *German Calibration Law*. As this data includes unhashed personal data and the Leitstelle does not have any legal authority to demand personal data, this seems to be a direct violation of the European General Data Protection Regulation (GDPR)!
@@ -142,9 +144,6 @@ The charging sessions include the signed meter values of the *German Calibration
   "reason": "POWERLOSS"
 }
 ```
-
-### /locations/{locationId}/evses/{evseId}/charging-sessions/{chargingSessionId}
-
 
 
 ## Hotline
