@@ -7,7 +7,7 @@ Whether this specification is internal, because it was attached to a limited ten
 
 ## OCPI Routing Headers
 
-The specification seems to be based on OCPI v2.2 and uses the OCPI Hub routing HTTP header information, but as the Leitstelle is not an OCPI hub and we can take the 'from* information from the HTTP connection credentials. Therefore this information seems to be redundant.
+The specification seems to be based on OCPI v2.2 and uses the OCPI Hub routing HTTP header information. As the Leitstelle is not an OCPI hub and we can always take the same sender information from the HTTP connection credentials, this information seems to be redundant. Therefore it is unclear why this optional headers are mentioned in this use case.
 
 ```
 OCPI-from-party-id      OPCI Party-ID of BoB
