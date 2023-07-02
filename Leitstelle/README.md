@@ -337,10 +337,10 @@ According to verbal explanations of the Leitstelle (29. June 2023) those chargin
 
 ```
 {
-  "start": "2023-07-02T11:00:04.402Z",
-  "end": "2023-07-02T11:00:04.402Z",
-  "emaId": "DE-ABC-hashedPart",
-  "tariffType": "PROFILE_GREEN",
+  "start":       "2023-07-02T11:00:04.402Z",
+  "end":         "2023-07-02T11:00:04.402Z
+  "emaId":       "DE-ABC-hashedPart",               // Partly hashed authentication ID of the driver. Country code and provider ID should not be hashed.
+  "tariffType":  "PROFILE_GREEN",                   // Enum that represents the type of tariff of a charging session: ADD_HOC_PAYMENT|PROFILE_CHEAP|PROFILE_FAST|PROFILE_GREEN|REGULAR
   "chargingPeriods": [
     {
       "start": "2023-07-02T11:00:04.402Z",
@@ -361,11 +361,11 @@ According to verbal explanations of the Leitstelle (29. June 2023) those chargin
       ]
     }
   ],
-  "totalCost": 34.5,
-  "totalEnergy": 25000,
-  "totalTime": 3600,
-  "totalParkingTime": 600,
-  "reason": "POWERLOSS"
+  "totalCost":          34.5,
+  "totalEnergy":        25000,
+  "totalTime":          3600,
+  "totalParkingTime":   600,
+  "reason":            "POWERLOSS"                  // Reason (OCPP) for ending the charging session: EMERGENCY_STOP|EV_DISCONNECTED|HARDRESET|LOCAL|OTHER|POWERLOSS|REBOOT|REMOTE|SOFT_RESET|UNLOCK_COMMAND|DEAUTHORIZED
 }
 ```
 
