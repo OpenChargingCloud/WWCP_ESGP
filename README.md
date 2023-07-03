@@ -27,6 +27,7 @@ Currently it does not make much sense to implement this protocol!
 
 - Energy related (real-time) information esp. for locations having more charging stations than the energy uplink (or multiple energy related bottlenecks) can handle concurrently and thus have to use some sort of load balancing should be made available.
 - Charging sessions under load balancing might not be handled equally. A common case are priorities based on user identifications or special backend management capabilities because a user needs to leave earlier than another one. So to understand concurrent charging sessions those priorities should be included within the charging session information.
+- Each CPO should also report monthly IT security incidents. Each RFID and AutoCharge authentication should be counted as one IT security incident. Each ISO 15118 authentication should be counted as one privacy incident.
 
 
 ### Related Work
